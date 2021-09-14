@@ -11,3 +11,9 @@ export const initSocket = () => {
         socket.emit(socket.id);
     });
 };
+export const registerNewUser = (username) => {
+  socket.emit('register-new-user', {
+    username,
+    socketId: socket.id
+  });
+}

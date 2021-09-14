@@ -11,8 +11,18 @@ const io = socket(server, {
     methods: ["GET", "POST"],
   },
 });
+
+let peers = [];
 io.on("connection", (socket) => {
   socket.emit("connection", null);
   console.log("new user connected");
   console.log(socket.io);
+  socket.on("register-new-user", (data) => {
+    peers.push({
+      username: data.username,
+      socket: data.socketId,
+    });
+    console.log('registered new user')
+    console.log(peers)
+  });
 });
